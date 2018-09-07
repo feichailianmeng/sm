@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mpri.aio.donation.mapper.DonProjectMapper">
+
+  	<!-- 基础返回值定义 -->
+	<resultMap id="BaseResultMap" type="com.mpri.aio.donation.model.DonProject">
+			<id column="id" jdbcType="VARCHAR" property="id" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="second_name" jdbcType="VARCHAR" property="secondName" />
+			<result column="pic" jdbcType="VARCHAR" property="pic" />
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="master" jdbcType="VARCHAR" property="master" />
+			<result column="phone" jdbcType="VARCHAR" property="phone" />
+			<result column="email" jdbcType="VARCHAR" property="email" />
+			<result column="target_money" jdbcType="DECIMAL" property="targetMoney" />
+			<result column="got_money" jdbcType="DECIMAL" property="gotMoney" />
+			<result column="donating_num" jdbcType="INTEGER" property="donatingNum" />
+			<result column="summary" jdbcType="VARCHAR" property="summary" />
+			<result column="content" jdbcType="LONGVARCHAR" property="content" />	
+			<result column="startdate" jdbcType="TIMESTAMP" property="startdate" />
+			<result column="enddate" jdbcType="TIMESTAMP" property="enddate" />
+			<result column="status" jdbcType="VARCHAR" property="status" />
+			<result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+			<result column="remark" jdbcType="VARCHAR" property="remark" />
+			<result column="flag" jdbcType="VARCHAR" property="flag" />
+	</resultMap>
+	
+    <!-- 基础字段定义 -->
+	<sql id="Base_Column_List">
+    	id, name, second_name, pic, type, master, phone, email, target_money, got_money, donating_num, summary, content, startdate, enddate, status, createDate, remark, flag
+	</sql>
+
+	<!-- 查询条件定义 -->
+	<sql id="query_where">
+		<if test="entity!=null">
+			<if test="entity.id != null and entity.id!='' ">
+        		and id=#{entity.id}
+      		</if>	      	
+	       	<if test="entity.name!=null and entity.name!='' ">
+	           	and name LIKE %#{entity.name}%
+	       	</if>		
+			<if test="entity.secondName != null and entity.secondName!='' ">
+        		and second_name=#{entity.secondName}
+      		</if>	      	
+			<if test="entity.pic != null and entity.pic!='' ">
+        		and pic=#{entity.pic}
+      		</if>	      	
+			<if test="entity.type != null and entity.type!='' ">
+        		and type=#{entity.type}
+      		</if>	      	
+			<if test="entity.master != null and entity.master!='' ">
+        		and master=#{entity.master}
+      		</if>	      	
+			<if test="entity.phone != null and entity.phone!='' ">
+        		and phone=#{entity.phone}
+      		</if>	      	
+			<if test="entity.email != null and entity.email!='' ">
+        		and email=#{entity.email}
+      		</if>	      	
+			<if test="entity.targetMoney != null and entity.targetMoney!='' ">
+        		and target_money=#{entity.targetMoney}
+      		</if>	      	
+			<if test="entity.gotMoney != null and entity.gotMoney!='' ">
+        		and got_money=#{entity.gotMoney}
+      		</if>	      	
+			<if test="entity.donatingNum != null and entity.donatingNum!='' ">
+        		and donating_num=#{entity.donatingNum}
+      		</if>	      	
+			<if test="entity.summary != null and entity.summary!='' ">
+        		and summary=#{entity.summary}
+      		</if>	      	
+			<if test="entity.content != null and entity.content!='' ">
+        		and content=#{entity.content}
+      		</if>	      	
+			<if test="entity.startdate != null and entity.startdate!='' ">
+        		and startdate=#{entity.startdate}
+      		</if>	      	
+			<if test="entity.enddate != null and entity.enddate!='' ">
+        		and enddate=#{entity.enddate}
+      		</if>	      	
+			<if test="entity.status != null and entity.status!='' ">
+        		and status=#{entity.status}
+      		</if>	      	
+			<if test="entity.createDate != null and entity.createDate!='' ">
+        		and createDate=#{entity.createDate}
+      		</if>	      	
+			<if test="entity.remark != null and entity.remark!='' ">
+        		and remark=#{entity.remark}
+      		</if>	      	
+			<if test="entity.flag != null and entity.flag!='' ">
+        		and flag= #{entity.FLAG_NORMAL}
+      		</if>
+		</if>
+	</sql>
+	
+  	<!-- 根据id查询 -->
+  	<select id="get" parameterType="com.mpri.aio.donation.model.DonProject" resultMap="BaseResultMap">
+   	    select 
+    		<include refid="Base_Column_List" />
+    	from don_project
+    	where id = #{id,jdbcType=VARCHAR} and flag = #{FLAG_NORMAL}
+  	</select>
+ 
+ 	<!-- 分页查询 -->
+    <select id="loadByPage" parameterType="com.mpri.aio.donation.model.DonProject" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from don_project 
+    	<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+  	<!-- 依照条件查询所有对象 -->
+  	<select id="loadAllListBy"  parameterType="com.mpri.aio.donation.model.DonProject" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from don_project 
+		<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+	<!-- 删除对象 -->
+  	<update id="delete" parameterType="com.mpri.aio.donation.model.DonProject">
+    	update don_project set flag = #{FLAG_HOLD} where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<!-- 插入数据 -->
+  	<insert id="insert" parameterType="com.mpri.aio.donation.model.DonProject">
+		insert into don_project
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	   		<if test="id != null">
+	    		id,
+	  		</if>   			
+	   		<if test="name != null">
+	    		name,
+	  		</if>   			
+	   		<if test="secondName != null">
+	    		second_name,
+	  		</if>   			
+	   		<if test="pic != null">
+	    		pic,
+	  		</if>   			
+	   		<if test="type != null">
+	    		type,
+	  		</if>   			
+	   		<if test="master != null">
+	    		master,
+	  		</if>   			
+	   		<if test="phone != null">
+	    		phone,
+	  		</if>   			
+	   		<if test="email != null">
+	    		email,
+	  		</if>   			
+	   		<if test="targetMoney != null">
+	    		target_money,
+	  		</if>   			
+	   		<if test="gotMoney != null">
+	    		got_money,
+	  		</if>   			
+	   		<if test="donatingNum != null">
+	    		donating_num,
+	  		</if>   			
+	   		<if test="summary != null">
+	    		summary,
+	  		</if>   			
+	   		<if test="content != null">
+	    		content,
+	  		</if>   			
+	   		<if test="startdate != null">
+	    		startdate,
+	  		</if>   			
+	   		<if test="enddate != null">
+	    		enddate,
+	  		</if>   			
+	   		<if test="status != null">
+	    		status,
+	  		</if>   			
+	   		<if test="createDate != null">
+	    		createDate,
+	  		</if>   			
+	   		<if test="remark != null">
+	    		remark,
+	  		</if>   			
+	   		<if test="flag != null">
+	    		flag,
+	  		</if>   			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	   		<if test="id != null">
+	   			#{id,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="name != null">
+	   			#{name,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="secondName != null">
+	   			#{secondName,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="pic != null">
+	   			#{pic,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="type != null">
+	   			#{type,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="master != null">
+	   			#{master,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="phone != null">
+	   			#{phone,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="email != null">
+	   			#{email,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="targetMoney != null">
+	   			#{targetMoney,jdbcType=DECIMAL},
+	  		</if>   			
+	   		<if test="gotMoney != null">
+	   			#{gotMoney,jdbcType=DECIMAL},
+	  		</if>   			
+	   		<if test="donatingNum != null">
+	   			#{donatingNum,jdbcType=INTEGER},
+	  		</if>   			
+	   		<if test="summary != null">
+	   			#{summary,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="content != null">
+	   			#{content,jdbcType=LONGVARCHAR},
+	  		</if>   			
+	   		<if test="startdate != null">
+	   			#{startdate,jdbcType=TIMESTAMP},
+	  		</if>   			
+	   		<if test="enddate != null">
+	   			#{enddate,jdbcType=TIMESTAMP},
+	  		</if>   			
+	   		<if test="status != null">
+	   			#{status,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="createDate != null">
+	   			#{createDate,jdbcType=TIMESTAMP},
+	  		</if>   			
+	   		<if test="remark != null">
+	   			#{remark,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="flag != null">
+	   			#{flag,jdbcType=VARCHAR},
+	  		</if>   			
+		</trim>
+  	</insert>
+
+  	<!-- 更新数据 -->
+  	<update id="update" parameterType="com.mpri.aio.donation.model.DonProject">
+    	update don_project
+    	<set>
+			<if test="name != null">
+	   			name = #{name,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="secondName != null">
+	   			second_name = #{secondName,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="pic != null">
+	   			pic = #{pic,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="type != null">
+	   			type = #{type,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="master != null">
+	   			master = #{master,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="phone != null">
+	   			phone = #{phone,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="email != null">
+	   			email = #{email,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="targetMoney != null">
+	   			target_money = #{targetMoney,jdbcType=DECIMAL},
+	  		</if>  
+			<if test="gotMoney != null">
+	   			got_money = #{gotMoney,jdbcType=DECIMAL},
+	  		</if>  
+			<if test="donatingNum != null">
+	   			donating_num = #{donatingNum,jdbcType=INTEGER},
+	  		</if>  
+			<if test="summary != null">
+	   			summary = #{summary,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="content != null">
+	   			content = #{content,jdbcType=LONGVARCHAR},
+	  		</if>  
+			<if test="startdate != null">
+	   			startdate = #{startdate,jdbcType=TIMESTAMP},
+	  		</if>  
+			<if test="enddate != null">
+	   			enddate = #{enddate,jdbcType=TIMESTAMP},
+	  		</if>  
+			<if test="status != null">
+	   			status = #{status,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="createDate != null">
+	   			createDate = #{createDate,jdbcType=TIMESTAMP},
+	  		</if>  
+			<if test="remark != null">
+	   			remark = #{remark,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="flag != null">
+	   			flag = #{flag,jdbcType=VARCHAR},
+	  		</if>  
+    	</set>
+    	where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+</mapper>

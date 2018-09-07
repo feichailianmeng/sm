@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>捐赠项目管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<script type="text/javascript" src="../../../../static/js/ztree/jquery-1.4.4.min.js"></script>
+		<link rel="stylesheet" href="../../../../static/css/formSelects-v4.css" media="all" />
+		<link rel="stylesheet" href="../../../../static/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../../../../static/css/public.css" media="all" />
+	</head>
+
+	<body class="childrenBody">
+		<div class="layui-tab layui-tab-card" lay-filter="info">
+			<div class="layui-tab-content" style="">
+				<div class="layui-tab-item layui-show">
+					<form class="layui-form" style="width:100%;">
+						<fieldset class="layui-elem-field site-demo-button" style="padding:15px;">
+							<div class="layui-col-md12 layui-col-xs12">
+								<input type="hidden" class="layui-input id" name='id' id='recordid'>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">捐赠人</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input name" name='name' id="name" lay-verify="required" placeholder="请输入捐赠人名称">
+										</div>
+									</div>
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">捐赠类型</label>
+										<div class="layui-input-block">
+											<select class="layui-form" name='donType' id='donType' lay-filter="donType">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">联系电话</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input phone" id="phone" name='phone'>
+										</div> 
+									</div>
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">联系邮箱</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input email" name='email' id="email">
+										</div>
+									</div>
+								</div>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">捐赠金额</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input money" id="money" name='money'>
+										</div> 
+									</div>
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">币种</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input moneyType" name='moneyType' id="moneyType">
+										</div>
+									</div>
+								</div>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">捐赠物</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input donationName" id="donationName" name='donationName'>
+										</div> 
+									</div>
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">捐赠时间</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input time" id="time" name='time' placeholder="yyyy-MM-dd">
+										</div> 
+									</div>
+								</div>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">是否要证书</label>
+										<div class="layui-input-block">
+											<select class="layui-form" name='isCertificate' id='isCertificate' lay-filter="isCertificate">
+												<option value=""></option>
+											</select>
+										</div> 
+									</div>
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">是否要发票</label>
+										<div class="layui-input-block">
+											<select class="layui-form" name='isInvoice' id='isInvoice' lay-filter="isInvoice">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="magb15 layui-row">
+									<div class="layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">邮寄地址</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input address" id="address" name='address'>
+										</div> 
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item layui-row layui-col-xs12">
+								<div class="layui-input-block">
+									<button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addRecord">确认</button>
+									<button class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
+									<button class="layui-btn layui-btn-sm layui-btn-normal" id="close">关闭</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../../static/layui/layui.js"></script>
+		<script type="text/javascript" src="../../../../static/js/modules/donation/record/recordadd.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mpri.aio.schoolmate.mapper.SmMarkMapper">
+
+  	<!-- 基础返回值定义 -->
+	<resultMap id="BaseResultMap" type="com.mpri.aio.schoolmate.model.SmMark">
+			<id column="id" jdbcType="VARCHAR" property="id" />
+			<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+			<result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="code" jdbcType="VARCHAR" property="code" />
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="useable" jdbcType="VARCHAR" property="useable" />
+			<result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+			<result column="remark" jdbcType="VARCHAR" property="remark" />
+            <result column="flag" jdbcType="VARCHAR" property="flag" />
+	</resultMap>
+	
+    <!-- 基础字段定义 -->
+	<sql id="Base_Column_List">
+    	id, parent_id, parent_ids, name, code, type, useable, create_date, remark, flag
+	</sql>
+
+	<!-- 查询条件定义 -->
+	<sql id="query_where">
+		<if test="entity!=null">
+		    <if test="entity.id != null and entity.id!='' ">
+                and id=#{entity.id}
+            </if>
+			<if test="entity.parentId != null and entity.parentId!='' ">
+        		and parent_id=#{entity.parentId}
+      		</if>	      	
+			<if test="entity.parentIds != null and entity.parentIds!='' ">
+        		and parent_ids=#{entity.parentIds}
+      		</if>	      	
+	       	<if test="entity.name!=null and entity.name!='' ">
+	           	and name LIKE %#{entity.name}%
+	       	</if>		
+			<if test="entity.code != null and entity.code!='' ">
+        		and code=#{entity.code}
+      		</if>	      	
+			<if test="entity.type != null and entity.type!='' ">
+        		and type=#{entity.type}
+      		</if>	      	
+			<if test="entity.useable != null and entity.useable!='' ">
+        		and useable=#{entity.useable}
+      		</if>	      	
+			<if test="entity.createDate != null and entity.createDate!='' ">
+        		and create_date=#{entity.createDate}
+      		</if>	      	
+      		<if test="entity.remark != null and entity.remark!='' ">
+                and remark=#{entity.remark}
+            </if>           
+            <if test="entity.flag != null and entity.flag!='' ">
+                and flag= #{entity.FLAG_NORMAL}
+            </if>
+		</if>
+	</sql>
+	
+  	<!-- 根据id查询 -->
+  	<select id="get" parameterType="com.mpri.aio.schoolmate.model.SmMark" resultMap="BaseResultMap">
+   	    select 
+    		<include refid="Base_Column_List" />
+    	from sm_mark
+    	where id = #{id,jdbcType=VARCHAR} and flag = #{FLAG_NORMAL}
+  	</select>
+ 
+ 	<!-- 分页查询 -->
+    <select id="loadByPage" parameterType="com.mpri.aio.schoolmate.model.SmMark" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from sm_mark 
+    	<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+  	<!-- 依照条件查询所有对象 -->
+  	<select id="loadAllListBy"  parameterType="com.mpri.aio.schoolmate.model.SmMark" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from sm_mark 
+		<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+	<!-- 删除对象 -->
+  	<update id="delete" parameterType="com.mpri.aio.schoolmate.model.SmMark">
+    	update sm_mark set flag = #{FLAG_HOLD} where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<!-- 插入数据 -->
+  	<insert id="insert" parameterType="com.mpri.aio.schoolmate.model.SmMark">
+		insert into sm_mark
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		    <if test="id != null">
+                id,
+            </if>
+	   		<if test="parentId != null">
+	    		parent_id,
+	  		</if>   			
+	   		<if test="parentIds != null">
+	    		parent_ids,
+	  		</if>   			
+	   		<if test="name != null">
+	    		name,
+	  		</if>   			
+	   		<if test="code != null">
+	    		code,
+	  		</if>   			
+	   		<if test="type != null">
+	    		type,
+	  		</if>   			
+	   		<if test="useable != null">
+	    		useable,
+	  		</if>   			
+	   		<if test="createDate != null">
+	    		create_date,
+	  		</if>  
+	  		<if test="remark != null">
+                remark,
+            </if>               
+            <if test="flag != null">
+                flag,
+            </if> 			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	   		<if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+	   		<if test="parentId != null">
+	   			#{parentId,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="parentIds != null">
+	   			#{parentIds,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="name != null">
+	   			#{name,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="code != null">
+	   			#{code,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="type != null">
+	   			#{type,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="useable != null">
+	   			#{useable,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="createDate != null">
+	   			#{createDate,jdbcType=TIMESTAMP},
+	  		</if> 
+	  		<if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>               
+            <if test="flag != null">
+                #{flag,jdbcType=VARCHAR},
+            </if>  			
+		</trim>
+  	</insert>
+
+  	<!-- 更新数据 -->
+  	<update id="update" parameterType="com.mpri.aio.schoolmate.model.SmMark">
+    	update sm_mark
+    	<set>
+			<if test="parentId != null">
+	   			parent_id = #{parentId,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="parentIds != null">
+	   			parent_ids = #{parentIds,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="name != null">
+	   			name = #{name,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="code != null">
+	   			code = #{code,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="type != null">
+	   			type = #{type,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="useable != null">
+	   			useable = #{useable,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="createDate != null">
+	   			create_date = #{createDate,jdbcType=TIMESTAMP},
+	  		</if>  
+	  		<if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>  
+            <if test="flag != null">
+                flag = #{flag,jdbcType=VARCHAR},
+            </if>
+    	</set>
+    	where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+    <select id="loadMarkByUser"  parameterType="com.mpri.aio.schoolmate.model.SmMark" resultMap="BaseResultMap" >
+	    select
+	       <include refid="Base_Column_List" />
+	    from sm_mark sm
+	     inner join sm_mark_schoolmate sms
+	     where
+	     sm.id = sms.mark_id
+	     and sms.sys_user_id = #{id,jdbcType=VARCHAR}
+	  </select>
+</mapper>

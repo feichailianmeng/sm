@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>校友管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../../static/css/formSelects-v4.css" media="all" />
+	<link rel="stylesheet" href="../../../../static/layui/css/layui.css" media="all" />
+	<link href="../../../../static/css/zTree/metroStyle/metroStyle.css" type="text/css" media="screen" rel="stylesheet"/>
+	<link href="../../../../static/css/zTree/demo.css" type="text/css" media="screen" rel="stylesheet"/>
+	<link rel="stylesheet" href="../../../../static/css/public.css" media="all" />
+	<script type="text/javascript" src="../../../../static/js/ztree/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../../static/js/ztree/jquery.ztree.core.min.js"></script>
+	<script type="text/javascript" src="../../../../static/js/ztree/jquery.ztree.excheck.js"></script>
+	<script type="text/javascript" src="../../../../static/js/ztree/jquery.ztree.exedit.js"></script>
+</head>
+<style>
+	label {
+		font-weight: bold;
+		font-size: 14px;
+	}
+	legend {
+		font-weight: bold;
+		font-size: 12px;
+	}
+</style>
+<body class="childrenBody">
+	<div class="layui-fluid" >
+		<form class="layui-form">
+			<div class="layui-collapse " lay-accordion="">
+				<div class="layui-colla-item ">
+					<h2 class="layui-colla-title">多条件查询</h2>
+					<div class="layui-colla-content show">			
+						<div class="layui-row">
+							<fieldset  class="layui-elem-field">
+								<legend>个人信息</legend>
+								<div class="layui-row">
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">姓名：</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input" id="name" placeholder="请输入姓名" />
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">性别：</label>
+										<div class="layui-input-block">
+											<select id="sex">
+											</select>
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">民族：</label>
+										<div class="layui-input-block">
+											<select id="nation" >
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="layui-row">	
+									<div class="magb15 layui-col-md4 layui-col-xs12">												
+										<label class="layui-form-label">校友类型：</label>
+										<div class="layui-input-block">
+											<select id="type" >
+											</select>
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">													
+										<label class="layui-form-label">证件类型：</label>
+										<div class="layui-input-block">
+											<select id="cardType" >
+											</select>
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">证件号：</label>
+										<div class="layui-input-block">
+											<input type="text" class="layui-input" id="cardNum" placeholder="请输入证件号" />
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="layui-row">
+							<fieldset  class="layui-elem-field">
+								<legend>学籍信息</legend>
+								<div class="layui-row">
+										<div class="magb15 layui-col-md6 layui-col-xs12">
+											<label class="layui-form-label">学号</label>
+											<div class="layui-input-block">
+												<input type="text" class="layui-input " id="studentid"  placeholder="请输入证件学号">
+											</div>
+										</div>
+										<div class="magb15 layui-col-md6 layui-col-xs12">
+											<label class="layui-form-label">学籍</label>
+											<div class="layui-input-block">
+<!-- 												<select name="orgId" xm-select="orgId" xm-select-radio="">
+														<option value="">请选择学籍</option>
+												</select> -->
+												<!-- <input type="text" id="orgId" lay-filter="orgId" placeholder="选择学籍" class="layui-input"> -->
+												<div id="orgId" class="layui-form-select select-tree " type="text">
+												</div>
+											</div>
+										</div>
+								</div>
+								<div class="layui-row">
+									<div class="magb15 layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">学历：</label>
+										<div class="layui-input-block">
+											<select  id='degree'>
+											</select>
+										</div>
+									</div>	
+									<div class="magb15 layui-col-md6 layui-col-xs12">
+										<label class="layui-form-label">学位类型：</label>
+										<div class="layui-input-block">
+											<select  id='degreetype' >
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="layui-row">
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">学制：</label>
+										<div class="layui-input-block">
+											<select  id='schoollen'  >
+											</select>
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">毕业时间：</label>
+										<div class="layui-input-block">
+											<input class="layui-input" placeholder="毕业时间"  id="startdate">
+										</div>
+									</div>
+									<div class="magb15 layui-col-md4 layui-col-xs12">
+										<label class="layui-form-label">入学时间：</label>
+										<div class="layui-input-block">
+											<input class="layui-input" placeholder="入学时间"  id="enddate">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+						<div class="layui-row">
+							<fieldset  class="layui-elem-field">
+							<legend>联系方式</legend>
+							<div class="layui-row">
+								<div class="magb15 layui-col-md6 layui-col-xs12">	
+									<label class="layui-form-label">联系方式：</label>
+									<div class="layui-input-block">
+										<select  id='contact_type' >
+										</select>
+									</div>
+								</div>
+								<div class="magb15 layui-col-md6 layui-col-xs12">
+									<label class="layui-form-label">号码：</label>
+									<div class="layui-input-block">
+										<input type="text" class="layui-input" id="contact" placeholder="请输入联系号码" />
+									</div>
+								</div>
+							</div>
+							</fieldset>
+						</div>
+						<div class="layui-row">
+							<fieldset  class="layui-elem-field">
+								<legend>通讯地址</legend>
+							<div class="magb15  layui-col-xs12">
+								<label class="layui-form-label" >地址</label>
+								<div class="layui-input-block">
+<!-- 									<select  xm-select="address" xm-select-radio="">
+											<option value="">请选择地址</option>
+									</select> -->
+									<div id="address" class="layui-form-select select-tree" type="text">
+									</div>
+								</div>
+							</div>
+							</fieldset>																						
+						</div>
+						<div class="layui-inline">
+							<a class="layui-btn" lay-submit="" lay-filter="searchForm" class="layui-btn search_btn" >查询</a>
+						</div>	
+					</div>
+				</div>
+			</div>		
+		</form>	
+		<div layui-inline class="layui-but-per">
+			<div class="layui-btn-group" id="but_per">		
+			</div>
+		</div>
+		<table id="smList" lay-filter="smList"></table>				
+	</div>
+</body>
+	<script type="text/javascript" src="../../../../static/layui/layui.js"></script>
+	<script type="text/javascript" src="../../../../static/js/modules/schoolmate/schoolmate/schoolmatelist.js"></script>
+	
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>校友管理</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="../../../../static/css/formSelects-v4.css"
+	media="all" />
+<link rel="stylesheet" href="../../../../static/layui/css/layui.css"
+	media="all" />
+<link rel="stylesheet" href="../../../../static/css/public.css"
+	media="all" />
+	<script type="text/javascript" src="../../../../static/layui/layui.js"></script>
+	<script type="text/javascript" src="../../../../static/js/modules/schoolmate/schoolmate/schoolmateAdd.js"></script>
+</head>
+
+<body class="childrenBody">
+	<div class="layui-tab layui-tab-card" lay-filter="info">
+		<ul class="layui-tab-title">
+			<li class="layui-this" lay-id="0">基本信息</li>
+			<li lay-id="1">教育经历</li>
+			<li lay-id="2">通讯地址</li>
+			<li lay-id="3">联系方式</li>
+		</ul>
+
+		<div class="layui-tab-content" style="">
+			 <!--基本信息 -->
+			<div class="layui-tab-item layui-show" >
+				<form class="layui-form" style="width:100%;" >
+					<input type="hidden" id='sysUserId'/>
+					<fieldset class="layui-elem-field site-demo-button" style="padding:15px;">
+						<input type="hidden" class="layui-input "  id='schoolmate_id' />
+						<input type="hidden" class="layui-input truePhoto" name='truePhoto'  placeholder="上传照片"/>
+						<div class="layui-row">
+							<div class="magb15 layui-col-md3 layui-col-xs12">
+								<label class="layui-form-label">姓名</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input name" lay-verify="required" placeholder="请输入姓名"/>
+								</div>
+							</div>
+							<div class="magb15 layui-col-md3 layui-col-xs12">
+								<label class="layui-form-label">性别</label>
+								<div class="layui-input-block">
+									<select id="sex">
+									</select>
+								</div>
+							</div>
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">登录名</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input username" id="username"  lay-verify="required|user_exist"" placeholder="请输入登录名"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="layui-row">
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">校友类型</label>
+								<div class="layui-input-block">
+									<select id="type">
+									</select>
+								</div>
+							</div>
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">民族</label>
+								<div class="layui-input-block">
+									<select id="nation" >
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="layui-row">
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">证件类型</label>
+								<div class="layui-input-block">
+									<select id="cardType" >
+									</select>
+								</div>
+							</div>
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">证件号码</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input cardNum"   placeholder="请输入证件号码" >
+								</div>
+							</div>
+						</div>
+
+						<div class="layui-row">
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">出生日期</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input birthday" id="birthday"  placeholder="yyyy-MM-dd">
+								</div>
+							</div>
+							<div class="magb15 layui-col-md6 layui-col-xs12">
+								<label class="layui-form-label">籍贯</label>
+								<div class="layui-input-block">
+									<select name="native_city" xm-select="native_place" xm-select-radio="">
+											<option value="">请选择籍贯</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-layer-btn ">
+						<button class="layui-btn" lay-submit="" lay-filter="addSchoolfellow">保存</button>
+					</div>
+					</fieldset>
+				</form>
+			</div>
+			 <!--教育经历 -->
+			<div class="layui-tab-item" id="eduDiv">
+				<form class="layui-form"  style="width:100%;" id='eduFrom'>
+					 <fieldset  class="layui-elem-field site-demo-button" style="padding:15px;">
+						<input type="hidden" class="layui-input mark" id="eduId_0"   >						
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs12">
+								<label class="layui-form-label">学籍信息</label>
+								<div class="layui-input-block">
+<!-- 									<select xm-select="edu_info_0"  lay-verify="required">
+										<option value=""></option>
+									</select> -->
+									<input type="text" class="layui-input orgId" id = "orgId_0" style="display: none;">
+									<input type="text" class="layui-input orgName" id = "orgName_0" lay-verify="required">	
+								</div>
+							</div>
+						</div>
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs3">
+								<label class="layui-form-label">学历</label>
+								<div class="layui-input-block">
+									<select  id='degree_0'  lay-verify="required">
+									</select>
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs3">
+								<label class="layui-form-label">学位类型</label>
+								<div class="layui-input-block">
+									<select  id='degreetype_0' lay-verify="required">
+									</select>
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs3">
+								<label class="layui-form-label">学号</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input " id='studentid_0' 
+										 lay-verify="required" placeholder="请输入学号">
+								</div>
+							</div>
+							<div class="magb15 layui-col-xs3">
+								<label class="layui-form-label">学制</label>
+								<div class="layui-input-block">
+									<select  id='schoollen_0'  lay-verify="required">
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs6">
+								<label class="layui-form-label">入学日期</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input " id="startdate_0"  >
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs6" id = "addedu">
+								<label class="layui-form-label">毕业日期</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input" id="enddate_0" >
+								</div>
+							</div>
+						</div>
+					</fieldset> 			
+					 <div class="layui-layer-btn">
+						 <button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="delEdu">删除</button>
+						<button class="layui-btn" lay-submit="" lay-filter="addEdu">保存</button>
+					</div>
+				</form>
+				<div class="layui-layer-btn ">
+					<button class="layui-btn layui-btn-normal"  id='addEduinfo' style="width:100%;">新增教育信息</button>
+				</div>
+			</div>
+
+			 <!--通讯地址 -->
+			<div class="layui-tab-item">
+				<form class="layui-form" style="width:100%;" id="addFrom">
+					<fieldset  class="layui-elem-field site-demo-button" style="padding:15px;">
+						<input type="hidden" class="layui-input mark" id="addId_0"   >
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs6">
+								<label class="layui-form-label">地址</label>
+								<div class="layui-input-block">
+									<select  xm-select="address_0" xm-select-radio="">
+											<option value="">请选择地址</option>
+									</select>
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs6">
+								<label class="layui-form-label">详细地址</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input "  id='detail_0' lay-verify="required" placeholder="请输入详细地址">
+								</div>
+							</div>
+						</div>
+						
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs3">
+								<label class="layui-form-label">邮编</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input " id='zipcode_0' lay-verify="required" placeholder="请输入邮编">
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs3">
+								<label class="layui-form-label">备注</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input"  id='remark_0'  lay-verify="required" placeholder="请输入备注">
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs6">
+								<label class="layui-form-label">邮寄地址</label>
+								<div class="layui-input-block">
+									<select  id='ispost_0'  lay-verify="required">
+									</select>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="layui-layer-btn ">
+						<button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="delAddress">删除</button>
+						<button class="layui-btn" lay-submit="" lay-filter="addAddress">保存</button>
+					</div>
+				</form>
+				<div class="layui-layer-btn ">
+					<button class="layui-btn layui-btn-normal"  id='addAddressinfo' style="width:100%;">新增通讯地址信息</button>
+				</div>
+			</div>
+			
+			 <!--联系方式 -->
+			<div class="layui-tab-item" id="contact">
+				<form  class="layui-form" style="width:100%;" id="contactForm">
+					<fieldset id='firstContact' class="layui-elem-field site-demo-button" style="padding:15px;">
+						<input type="hidden" class="layui-input mark" id="contId_0" >
+						<div class="layui-row">
+							<div class="magb15  layui-col-xs4">
+								<label class="layui-form-label">联系类型</label>
+								<div class="layui-input-block">
+									<select  id='type_0' lay-verify="required">
+									</select>
+								</div>
+							</div>
+							<div class="magb15  layui-col-xs8">
+								<label class="layui-form-label">联系内容</label>
+								<div class="layui-input-block">
+									<input type="text" class="layui-input" id="contact_0" lay-verify="required" placeholder="请输入内容">
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					
+				<div class="layui-layer-btn ">
+					<button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="delContact">删除</button>
+					<button class="layui-btn" lay-submit="" lay-filter="addContact">保存</button>
+				</div>
+				</form>
+				<div class="layui-layer-btn ">
+					<button class="layui-btn layui-btn-normal"  id='addContactinfo' style="width:100%;">新增通讯地址信息</button>
+				</form>
+			</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mpri.aio.donation.mapper.DonDonationFileMapper">
+
+  	<!-- 基础返回值定义 -->
+	<resultMap id="BaseResultMap" type="com.mpri.aio.donation.model.DonDonationFile">
+			<id column="id" jdbcType="VARCHAR" property="id" />
+			<result column="don_donation_id" jdbcType="VARCHAR" property="donDonationId" />
+			<result column="filepath" jdbcType="VARCHAR" property="filepath" />
+			<result column="sequence" jdbcType="INTEGER" property="sequence" />
+			<result column="count" jdbcType="INTEGER" property="count" />
+			<result column="state" jdbcType="VARCHAR" property="state" />
+			<result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+			<result column="remark" jdbcType="VARCHAR" property="remark" />
+			<result column="flag" jdbcType="VARCHAR" property="flag" />
+	</resultMap>
+	
+    <!-- 基础字段定义 -->
+	<sql id="Base_Column_List">
+    	id, don_donation_id, filepath, sequence, count, state, createDate, remark, flag
+	</sql>
+
+	<!-- 查询条件定义 -->
+	<sql id="query_where">
+		<if test="entity!=null">
+			<if test="entity.id != null and entity.id!='' ">
+        		and id=#{entity.id}
+      		</if>	      	
+			<if test="entity.donDonationId != null and entity.donDonationId!='' ">
+        		and don_donation_id=#{entity.donDonationId}
+      		</if>	      	
+			<if test="entity.filepath != null and entity.filepath!='' ">
+        		and filepath=#{entity.filepath}
+      		</if>	      	
+			<if test="entity.sequence != null and entity.sequence!='' ">
+        		and sequence=#{entity.sequence}
+      		</if>	      	
+			<if test="entity.count != null and entity.count!='' ">
+        		and count=#{entity.count}
+      		</if>	      	
+			<if test="entity.state != null and entity.state!='' ">
+        		and state=#{entity.state}
+      		</if>	      	
+			<if test="entity.createDate != null and entity.createDate!='' ">
+        		and createDate=#{entity.createDate}
+      		</if>	      	
+			<if test="entity.remark != null and entity.remark!='' ">
+        		and remark=#{entity.remark}
+      		</if>	      	
+			<if test="entity.flag != null and entity.flag!='' ">
+        		and flag= #{entity.FLAG_NORMAL}
+      		</if>
+		</if>
+	</sql>
+	
+  	<!-- 根据id查询 -->
+  	<select id="get" parameterType="com.mpri.aio.donation.model.DonDonationFile" resultMap="BaseResultMap">
+   	    select 
+    		<include refid="Base_Column_List" />
+    	from don_donation_file
+    	where id = #{id,jdbcType=VARCHAR} and flag = #{FLAG_NORMAL}
+  	</select>
+ 
+ 	<!-- 分页查询 -->
+    <select id="loadByPage" parameterType="com.mpri.aio.donation.model.DonDonationFile" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from don_donation_file 
+    	<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+  	<!-- 依照条件查询所有对象 -->
+  	<select id="loadAllListBy"  parameterType="com.mpri.aio.donation.model.DonDonationFile" resultMap="BaseResultMap" >
+    	select
+    		<include refid="Base_Column_List" />
+    	from don_donation_file 
+		<where>
+	  		<include refid="query_where"></include>
+    	</where>
+  	</select>
+
+	<!-- 删除对象 -->
+  	<update id="delete" parameterType="com.mpri.aio.donation.model.DonDonationFile">
+    	update don_donation_file set flag = #{FLAG_HOLD} where id = #{id,jdbcType=VARCHAR}
+  	</update>
+  	
+  	<!-- 插入数据 -->
+  	<insert id="insert" parameterType="com.mpri.aio.donation.model.DonDonationFile">
+		insert into don_donation_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	   		<if test="id != null">
+	    		id,
+	  		</if>   			
+	   		<if test="donDonationId != null">
+	    		don_donation_id,
+	  		</if>   			
+	   		<if test="filepath != null">
+	    		filepath,
+	  		</if>   			
+	   		<if test="sequence != null">
+	    		sequence,
+	  		</if>   			
+	   		<if test="count != null">
+	    		count,
+	  		</if>   			
+	   		<if test="state != null">
+	    		state,
+	  		</if>   			
+	   		<if test="createDate != null">
+	    		createDate,
+	  		</if>   			
+	   		<if test="remark != null">
+	    		remark,
+	  		</if>   			
+	   		<if test="flag != null">
+	    		flag,
+	  		</if>   			
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	   		<if test="id != null">
+	   			#{id,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="donDonationId != null">
+	   			#{donDonationId,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="filepath != null">
+	   			#{filepath,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="sequence != null">
+	   			#{sequence,jdbcType=INTEGER},
+	  		</if>   			
+	   		<if test="count != null">
+	   			#{count,jdbcType=INTEGER},
+	  		</if>   			
+	   		<if test="state != null">
+	   			#{state,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="createDate != null">
+	   			#{createDate,jdbcType=TIMESTAMP},
+	  		</if>   			
+	   		<if test="remark != null">
+	   			#{remark,jdbcType=VARCHAR},
+	  		</if>   			
+	   		<if test="flag != null">
+	   			#{flag,jdbcType=VARCHAR},
+	  		</if>   			
+		</trim>
+  	</insert>
+
+  	<!-- 更新数据 -->
+  	<update id="update" parameterType="com.mpri.aio.donation.model.DonDonationFile">
+    	update don_donation_file
+    	<set>
+			<if test="donDonationId != null">
+	   			don_donation_id = #{donDonationId,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="filepath != null">
+	   			filepath = #{filepath,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="sequence != null">
+	   			sequence = #{sequence,jdbcType=INTEGER},
+	  		</if>  
+			<if test="count != null">
+	   			count = #{count,jdbcType=INTEGER},
+	  		</if>  
+			<if test="state != null">
+	   			state = #{state,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="createDate != null">
+	   			createDate = #{createDate,jdbcType=TIMESTAMP},
+	  		</if>  
+			<if test="remark != null">
+	   			remark = #{remark,jdbcType=VARCHAR},
+	  		</if>  
+			<if test="flag != null">
+	   			flag = #{flag,jdbcType=VARCHAR},
+	  		</if>  
+    	</set>
+    	where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+    <delete id="deleteByProjectId"  parameterType="com.mpri.aio.donation.model.DonProject">
+        delete from don_donation_file where don_donation_id=#{id,jdbcType=VARCHAR}
+    </delete>
+</mapper>
