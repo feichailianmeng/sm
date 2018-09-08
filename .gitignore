@@ -3,13 +3,13 @@
 CVS
 # Log file
 *.log
-
+target
 # BlueJ files
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+*.settings
 # Package Files #
 *.jar
 *.war

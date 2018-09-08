@@ -64,6 +64,15 @@ public class SysUserService extends CrudService<SysUserMapper, SysUser>  {
 		mapper.deleteUserRole(sysUser);
 	};
 
+	/**
+	 * 根据用户名获取密码
+	 * @param username
+	 * @return
+	 */
+	public SysUser getPwdByUsername(SysUser sysUser) {
+		return mapper.getSysUserByUsername(sysUser);
+	}
+	
 //	@Transactional(rollbackFor=Exception.class)
 //	public void saveUsers(List<SysUser> userList) {
 //		for(SysUser su:userList) {

@@ -428,4 +428,20 @@
     	where id = #{id,jdbcType=VARCHAR}
 	</update>
 
+
+	<!-- 删除对象 -->
+  	<update id="delDuplicate" parameterType="com.mpri.aio.schoolmate.model.SmSchoolmateTemp">
+		update sm_schoolmate_temp sm_schoolmate_temp set flag = #{FLAG_HOLD}
+		where create_date not in 
+		(SELECT t.createDate from 
+			( select max(create_date) as createDate
+			from sm_schoolmate_temp sm_s_t where flag = #{FLAG_NORMAL}
+			group by 
+			<foreach collection="compareStrs" item="item" index="index" separator=",">
+				${item}
+			</foreach>
+			) t
+		)    	
+  	</update>
+	
 </mapper>

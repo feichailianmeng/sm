@@ -78,7 +78,6 @@
     where username = #{username,jdbcType=VARCHAR} and flag=#{FLAG_NORMAL}
   </select>
  
- 
    <!-- 查询user数量 -->
   <select id="getUserNum" parameterType="com.mpri.aio.system.model.SysUser" resultType = "Integer">
     select 
@@ -86,6 +85,8 @@
     from sys_user a
     where username = #{username,jdbcType=VARCHAR} and flag=#{FLAG_NORMAL}
   </select>
+ 
+ 
  
   <!-- 根据id查询对象-->
   <select id="get" parameterType="com.mpri.aio.system.model.SysUser" resultMap="BaseResultMap">

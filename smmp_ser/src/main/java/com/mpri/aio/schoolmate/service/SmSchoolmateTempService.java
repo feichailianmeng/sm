@@ -40,7 +40,8 @@ public class SmSchoolmateTempService extends CrudService<SmSchoolmateTempMapper,
 
     
     @Autowired
-    SmSchoolmateService smSchoolmateService;
+    private SmSchoolmateService smSchoolmateService;
+	
     private static Logger logger = LoggerFactory.getLogger(SmSchoolmateTempService.class);
     
     public void exportExcle(HttpServletResponse response,SmSchoolmate smSchoolmate)
@@ -202,4 +203,14 @@ public class SmSchoolmateTempService extends CrudService<SmSchoolmateTempMapper,
 		}
     }
     
+	    
+    
+    /**
+     * <p>Description: 数据去重 </p>
+     * @param smSchoolmateTemp
+     */
+    @Transactional(readOnly = false)
+    public void delDuplicate(SmSchoolmateTemp smSchoolmateTemp) {
+        mapper.delDuplicate(smSchoolmateTemp);
+    };
 }

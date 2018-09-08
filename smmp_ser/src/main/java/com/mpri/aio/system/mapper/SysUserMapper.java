@@ -42,4 +42,5 @@ public interface SysUserMapper extends CrudMapper<SysUser>{
      */
     int getUserNum(SysUser sysUser);
     
+    
 }

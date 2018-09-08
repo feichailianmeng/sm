@@ -17,5 +17,5 @@ import com.mpri.aio.schoolmate.model.SmSchoolmateTemp;
 @Mapper
 public interface SmSchoolmateTempMapper extends CrudMapper<SmSchoolmateTemp>{
 
-	
+    void delDuplicate(SmSchoolmateTemp smSchoolmateTemp);
 }
