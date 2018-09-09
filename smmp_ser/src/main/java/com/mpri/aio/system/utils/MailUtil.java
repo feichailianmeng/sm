@@ -39,7 +39,6 @@ public class MailUtil
 	 * @throws TemplateException
 	 * @throws MessagingException
 	 */
-	@Async("threadPoolTaskExecutor")
 	public void send(String toEmail, Template template,Map<String, Object> map)
 			throws IOException, TemplateException, MessagingException
 	{
