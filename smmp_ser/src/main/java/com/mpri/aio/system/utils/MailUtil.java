@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -38,7 +39,7 @@ public class MailUtil
 	 * @throws TemplateException
 	 * @throws MessagingException
 	 */
-	@Async
+	@Async("threadPoolTaskExecutor")
 	public void send(String toEmail, Template template,Map<String, Object> map)
 			throws IOException, TemplateException, MessagingException
 	{
@@ -55,7 +56,7 @@ public class MailUtil
 	 * @throws TemplateException
 	 * @throws MessagingException
 	 */
-	@Async
+	@Async("threadPoolTaskExecutor")
 	public void send(String toEmail, String html)
 			throws IOException, MessagingException
 	{
@@ -67,4 +68,18 @@ public class MailUtil
 		helper.setText(html, true);
 		jms.send(message);
 	}
+	
+    /**
+     * 获取模版
+     * @param templateFileName 模版名称必须带后缀名
+     * @return
+     * @throws Exception
+     */
+    public static Template getFtlTemplete(String templateFileName) throws Exception{
+        Configuration config = new Configuration(Configuration.VERSION_2_3_22);
+        config.setClassForTemplateLoading(MailUtil.class, "/templates");
+        config.setDefaultEncoding("UTF-8");//要UTF-8,不然中文乱码
+//        Template emailTemplate = config.getTemplate("email.ftl");
+        return config.getTemplate(templateFileName);
+    }
 }

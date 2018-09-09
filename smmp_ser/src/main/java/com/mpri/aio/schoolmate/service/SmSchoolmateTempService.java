@@ -25,6 +25,9 @@ import com.mpri.aio.schoolmate.model.SmSchoolmate;
 import com.mpri.aio.schoolmate.model.SmSchoolmateTemp;
 import com.mpri.aio.schoolmate.utils.AttributeUtils;
 import com.mpri.aio.schoolmate.utils.ExportExcelUtils;
+import com.mpri.aio.system.utils.MailUtil;
+
+import freemarker.template.Template;
 
  /**   
  *  
@@ -41,6 +44,9 @@ public class SmSchoolmateTempService extends CrudService<SmSchoolmateTempMapper,
     
     @Autowired
     private SmSchoolmateService smSchoolmateService;
+    
+    @Autowired
+    private MailUtil mailUtil;
 	
     private static Logger logger = LoggerFactory.getLogger(SmSchoolmateTempService.class);
     
@@ -213,4 +219,20 @@ public class SmSchoolmateTempService extends CrudService<SmSchoolmateTempMapper,
     public void delDuplicate(SmSchoolmateTemp smSchoolmateTemp) {
         mapper.delDuplicate(smSchoolmateTemp);
     };
+    
+    
+    /**
+     * 邮件发送
+     * @param toEmail
+     * @param map
+     */
+    public void cardIssue(String toEmail,Map<String, Object> map) {
+    	try {
+    		Template emailTemplate =MailUtil.getFtlTemplete("email.ftl");
+    		mailUtil.send(toEmail, emailTemplate, map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }
