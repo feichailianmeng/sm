@@ -405,18 +405,12 @@
 		select distinct
 		<include refid="Info_Base_Column_List" />
 		from sm_schoolmate sm_s
-		<if test="smContact != null ">
 			left join sm_contact sm_c on sm_c.sys_user_id =
 			sm_s.sys_user_id
-		</if>
-		<if test="smEducation != null ">
 			left join sm_education sm_e on sm_e.sys_user_id =
 			sm_s.sys_user_id
-		</if>
-		<if test="smAddress != null ">
 			left join sm_address sm_a on sm_a.sys_user_id =
 			sm_s.sys_user_id
-		</if>
 		<where>
 			<include refid="union_query_where_all"></include>
 			<if test="smContact != null ">

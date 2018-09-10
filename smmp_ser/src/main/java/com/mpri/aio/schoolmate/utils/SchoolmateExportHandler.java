@@ -45,24 +45,32 @@ public class SchoolmateExportHandler{
 			smSchoolmate.setNation(setFormatDictValue(smSchoolmate.getNation()));
 			
 			SmAddress smAddress = smSchoolmate.getSmAddress();
-			smAddress.setCity(setFormatAreaValue(smAddress.getCity()));
-			smAddress.setIspost(setFormatDictValue(smAddress.getIspost()));
-			smAddress.setCountry(setFormatAreaValue(smAddress.getCountry()));
-			smAddress.setProvince(setFormatAreaValue(smAddress.getProvince()));
+			if(smAddress != null) {
+	            smAddress.setCity(setFormatAreaValue(smAddress.getCity()));
+	            smAddress.setIspost(setFormatDictValue(smAddress.getIspost()));
+	            smAddress.setCountry(setFormatAreaValue(smAddress.getCountry()));
+	            smAddress.setProvince(setFormatAreaValue(smAddress.getProvince()));			    
+			}
+
 			
 			SmContact smContact = smSchoolmate.getSmContact();
-			smContact.setType(setFormatDictValue(smContact.getType()));
+			if(smContact != null) {
+	            smContact.setType(setFormatDictValue(smContact.getType()));			    
+			}
+
 			
 			SmEducation smEducation = smSchoolmate.getSmEducation();
-			smEducation.setSchool(setFormatOrgValue(smEducation.getSchool()));
-			smEducation.setCollege(setFormatOrgValue(smEducation.getCollege()));
-			smEducation.setAcademy(setFormatOrgValue(smEducation.getAcademy()));
-			smEducation.setSeries(setFormatOrgValue(smEducation.getSeries()));
-			smEducation.setSpecialty(setFormatOrgValue(smEducation.getSpecialty()));
-			smEducation.setClassName(setFormatOrgValue(smEducation.getClassName()));
-			smEducation.setDegree(setFormatDictValue(smEducation.getDegree()));
-			smEducation.setDegreetype(setFormatDictValue(smEducation.getDegreetype()));
-			smEducation.setSchoollen(setFormatDictValue(smEducation.getSchoollen()));
+			if(smEducation != null) {
+	            smEducation.setSchool(setFormatOrgValue(smEducation.getSchool()));
+	            smEducation.setCollege(setFormatOrgValue(smEducation.getCollege()));
+	            smEducation.setAcademy(setFormatOrgValue(smEducation.getAcademy()));
+	            smEducation.setSeries(setFormatOrgValue(smEducation.getSeries()));
+	            smEducation.setSpecialty(setFormatOrgValue(smEducation.getSpecialty()));
+	            smEducation.setClassName(setFormatOrgValue(smEducation.getClassName()));
+	            smEducation.setDegree(setFormatDictValue(smEducation.getDegree()));
+	            smEducation.setDegreetype(setFormatDictValue(smEducation.getDegreetype()));
+	            smEducation.setSchoollen(setFormatDictValue(smEducation.getSchoollen()));   
+			}
 		}
 		return list;
 	}
