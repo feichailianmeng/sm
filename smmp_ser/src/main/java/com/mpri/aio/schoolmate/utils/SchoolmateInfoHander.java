@@ -1,7 +1,5 @@
 package com.mpri.aio.schoolmate.utils;
 
-import java.util.Date;
-
 import com.github.pagehelper.util.StringUtil;
 import com.mpri.aio.schoolmate.model.SmAddress;
 import com.mpri.aio.schoolmate.model.SmContact;

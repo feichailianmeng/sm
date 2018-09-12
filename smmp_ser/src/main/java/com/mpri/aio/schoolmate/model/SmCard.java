@@ -1,6 +1,5 @@
 package com.mpri.aio.schoolmate.model;
-import com.mpri.aio.base.model.DataEntity; 
-import java.util.Date;
+import com.mpri.aio.base.model.DataEntity;
 
  /**   
  *  

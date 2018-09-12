@@ -1,18 +1,12 @@
 package com.mpri.aio.schoolmate.model;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mpri.aio.base.model.DataEntity;
-import com.mpri.aio.system.init.InitCache;
-import com.mpri.aio.system.model.SysArea;
-import com.mpri.aio.system.model.SysDict;
-import com.mpri.aio.system.model.SysOrg;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelEntity;

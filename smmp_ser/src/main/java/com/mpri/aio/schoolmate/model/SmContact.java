@@ -5,8 +5,6 @@ import com.mpri.aio.base.model.DataEntity;
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
 
-import java.util.Date;
-
 /**   
 *  
 * @Description:  校友管理-联系方式

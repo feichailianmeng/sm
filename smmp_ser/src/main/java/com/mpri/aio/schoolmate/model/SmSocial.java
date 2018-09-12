@@ -1,8 +1,9 @@
  package com.mpri.aio.schoolmate.model;
-import com.mpri.aio.base.model.DataEntity; 
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.mpri.aio.base.model.DataEntity;
 
 /**   
  *  

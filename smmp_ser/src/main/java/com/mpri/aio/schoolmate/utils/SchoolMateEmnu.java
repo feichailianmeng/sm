@@ -1,7 +1,5 @@
 package com.mpri.aio.schoolmate.utils;
 
-import java.util.Date;
-
 /**
 * desc
 * @author lzq

@@ -10,7 +10,6 @@ import com.mpri.aio.base.service.CrudService;
 import com.mpri.aio.schoolmate.mapper.SmEducationMapper;
 import com.mpri.aio.schoolmate.model.SmEducation;
 import com.mpri.aio.system.model.SysOrg;
-import com.mpri.aio.system.service.SysDictService;
 import com.mpri.aio.system.service.SysOrgService;
 
 import tk.mybatis.mapper.util.StringUtil;

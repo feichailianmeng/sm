@@ -16,6 +16,7 @@ import com.mpri.aio.base.controller.BaseController;
 import com.mpri.aio.common.exception.ExceptionResult;
 import com.mpri.aio.common.page.PageIo;
 import com.mpri.aio.common.response.RestResponse;
+import com.mpri.aio.schoolmate.aop.InfoIntegrity;
 import com.mpri.aio.schoolmate.model.SmAddress;
 import com.mpri.aio.schoolmate.model.SmEducation;
 import com.mpri.aio.schoolmate.model.SmSchoolmate;
@@ -75,6 +76,7 @@ public class SmSchoolmateController extends BaseController {
 	* @param smSchoolmate
 	* @return
 	 */
+	@InfoIntegrity
 	@CrossOrigin
 	@PostMapping(value = "/save")
 	public RestResponse<SmSchoolmate> save(@RequestBody SmSchoolmate smSchoolmate){
