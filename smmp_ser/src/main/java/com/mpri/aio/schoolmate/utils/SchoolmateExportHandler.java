@@ -3,8 +3,6 @@ package com.mpri.aio.schoolmate.utils;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.ss.formula.functions.T;
-
 import com.github.pagehelper.util.StringUtil;
 import com.mpri.aio.schoolmate.model.SmAddress;
 import com.mpri.aio.schoolmate.model.SmContact;
@@ -14,9 +12,6 @@ import com.mpri.aio.system.init.InitCache;
 import com.mpri.aio.system.model.SysArea;
 import com.mpri.aio.system.model.SysDict;
 import com.mpri.aio.system.model.SysOrg;
-
-import cn.afterturn.easypoi.excel.annotation.Excel;
-import cn.afterturn.easypoi.handler.impl.ExcelDataHandlerDefaultImpl;
 
 /**
  * 校友导出数据处理

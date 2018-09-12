@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
 import com.mpri.aio.base.service.CrudService;
 import com.mpri.aio.schoolmate.utils.DatasCovert;
 import com.mpri.aio.schoolmate.vo.FormSelectDatas;
-import com.mpri.aio.system.model.SysArea;
-import com.mpri.aio.system.model.SysOrg;
 import com.mpri.aio.system.mapper.SysOrgMapper;
+import com.mpri.aio.system.model.SysOrg;
 
  /**   
  *  
